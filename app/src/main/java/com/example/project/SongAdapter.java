@@ -14,55 +14,53 @@ import com.bumptech.glide.Glide;
 
 import java.util.List;
 
-public class Myadapter extends RecyclerView.Adapter<Myadapter.ViewHolder> {
+public class SongAdapter extends RecyclerView.Adapter<SongAdapter.ViewHolder>  {
 
 
-    private List<Listsong> listsongs;
     private Context context;
+    private List<Datum> datums;
 
-    public Myadapter(List<Listsong> listsongs, Context context) {
-        this.listsongs = listsongs;
+    public SongAdapter(Context context, List<Datum> datums) {
         this.context = context;
+        this.datums = datums;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-        //Listitem listitem = listitems.get(position);
-        Listsong listsong = listsongs.get(position);//this is from listsong java file
+        Datum datum = datums.get(position);
 
+        Glide.with(context).load(datums.get(position).getThumbnail()).into(holder.thumbnail);
 
-        Glide.with(context).load(listsongs.get(position).getThumbnail()).into(holder.thumbnail);
+        holder.title.setText(datum.getTitle());
+        holder.artist.setText(datum.getArtist());
+        holder.duration.setText(datum.getDuration());
 
-        holder.title.setText(listsong.getTitle());
-        holder.artist.setText(listsong.getArtist());
-        holder.duration.setText(listsong.getDuration());
     }
 
     @Override
     public int getItemCount() {
-
-        return listsongs.size();
+        return datums.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
-
-        public ImageView thumbnail;
-        public TextView title;
-        public TextView artist;
-        public TextView duration;
+        ImageView thumbnail;
+        TextView title;
+        TextView artist;
+        TextView duration;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+
             thumbnail = (ImageView) itemView.findViewById(R.id.thumbnail);
             title = (TextView) itemView.findViewById(R.id.title);
             artist = (TextView) itemView.findViewById(R.id.artist);
