@@ -29,7 +29,7 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.ViewHolder>  {
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.list_item, parent, false);
         return new ViewHolder(view);
     }
 
@@ -42,7 +42,8 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.ViewHolder>  {
 
         holder.title.setText(datum.getTitle());
         holder.artist.setText(datum.getArtist());
-        holder.duration.setText(datum.getDuration());
+       // holder.duration.setText(datum.getDuration());
+        holder.duration.setText(Integer.toString(datum.getDuration()));
 
     }
 
@@ -50,6 +51,7 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.ViewHolder>  {
     public int getItemCount() {
         return datums.size();
     }
+
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 

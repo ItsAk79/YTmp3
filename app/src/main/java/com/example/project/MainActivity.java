@@ -22,15 +22,20 @@ public class MainActivity extends AppCompatActivity {
 
     private List<Listsong> listsongs;
 
+    private List<Datum> datumList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
         recyclerView.setHasFixedSize(true);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+
         //recyclerView.setLayoutManager(new GridLayoutManager(this,2, GridLayoutManager.VERTICAL, false));
 
         /*listsongs = new ArrayList<>();
@@ -67,19 +72,28 @@ public class MainActivity extends AppCompatActivity {
         adapter = new Myadapter(listsongs,this);
         recyclerView.setAdapter(adapter);*/
 
+
       getData();
 
     }
 
     void getData()
     {
-        Call<SongList> songlist = SongAPI.getResult().getSongList();
+        final Call<SongList> songlist = SongAPI.getResult().getSongList();
         songlist.enqueue(new Callback<SongList>() {
             @Override
             public void onResponse(Call<SongList> call, Response<SongList> response) {
 
-                SongList list = response.body();
-                recyclerView.setAdapter(new SongAdapter(MainActivity.this, list.getData()));
+                //SongList list = response.body();
+                //recyclerView.setAdapter(new SongAdapter(MainActivity.this, list.getData()));
+
+                //datumdata
+                //datums.addAll((SongList)response.body().getData());
+                //songAdapter.notifyDataSetChanged();
+
+                SongList songList = response.body();
+                recyclerView.setAdapter(new SongAdapter(MainActivity.this, songList.getData()));
+
                 Toast.makeText(getApplicationContext(),"SUCCESS",Toast.LENGTH_SHORT).show();
             }
 

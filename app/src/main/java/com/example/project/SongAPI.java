@@ -29,7 +29,6 @@ public class SongAPI {
     public interface GetResult{
 
         @GET("/")
-        //Call<SongList> getSongList();
         Call<SongList> getSongList();
 
     }
