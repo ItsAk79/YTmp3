@@ -28,7 +28,7 @@ public class exoplayer extends AppCompatActivity {
     String url1="";
 
     ImageView thumb;
-    TextView link, tt;
+    TextView link;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,14 +36,20 @@ public class exoplayer extends AppCompatActivity {
 
         thumb = findViewById(R.id.thumb);
         link = findViewById(R.id.link);
-        tt = findViewById(R.id.tt);
 
         String image = getIntent().getStringExtra("image");
         String url = getIntent().getStringExtra("url");
-        String tt = getIntent().getStringExtra("title");
+        if (url.contains(".jpeg")){
+            link.setText(null);
 
-        link.setText(url);
-        Glide.with(this).asBitmap().load(image).into(thumb);
+            //Glide.with(this).asBitmap().load(image).into(thumb);
+        }
+        else {
+            link.setText(url);
+            Glide.with(this).asBitmap().load(image).into(thumb);
+        }
+        //link.setText(url);
+        //Glide.with(this).asBitmap().load(image).into(thumb);
         initializeplayer();
     }
 

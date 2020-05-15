@@ -20,19 +20,13 @@
         android:id="@+id/link"
         />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/tt"
-        />
     <com.google.android.exoplayer2.ui.SimpleExoPlayerView
         android:id="@+id/exo"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:controller_layout_id="@layout/exo_player_control_view"
         app:surface_type="surface_view"
-        app:use_controller="true"
-        >
+        app:use_controller="true">
 
 
     </com.google.android.exoplayer2.ui.SimpleExoPlayerView>
