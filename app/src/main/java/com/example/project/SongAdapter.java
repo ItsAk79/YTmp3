@@ -64,7 +64,6 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.ViewHolder>  {
 
             }
         });
-
     }
 
     @Override

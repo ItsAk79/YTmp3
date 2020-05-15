@@ -178,7 +178,7 @@ public class MainActivity extends AppCompatActivity implements OnImageClickListe
 
     //imageclick listener
     @Override
-    public void onImageClick(String imageData) {
+    public void onImageClick(String imageData ) {
 
         Intent i = new Intent(MainActivity.this,exoplayer.class);
         i.putExtra("image", imageData);
