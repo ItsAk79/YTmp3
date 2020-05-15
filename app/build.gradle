@@ -1,6 +1,12 @@
 apply plugin: 'com.android.application'
 
 android {
+
+    //javaversion support
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
     compileSdkVersion 29
     buildToolsVersion "29.0.1"
     defaultConfig {
@@ -36,4 +42,8 @@ dependencies {
     //retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.3.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
+
+    //exoplayer
+    implementation 'com.google.android.exoplayer:exoplayer:2.9.6'
+
 }

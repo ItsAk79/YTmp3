@@ -1,11 +1,16 @@
 package com.example.project;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.nfc.Tag;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -20,9 +25,14 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.ViewHolder>  {
     private Context context;
     private List<Datum> datums;
 
-    public SongAdapter(Context context, List<Datum> datums) {
+    //imagelistener define
+    private OnImageClickListener onImageClickListener;
+
+    //3rd argument is listener
+    public SongAdapter(Context context, List<Datum> datums, OnImageClickListener onImageClickListener) {
         this.context = context;
         this.datums = datums;
+        this.onImageClickListener = onImageClickListener;
     }
 
     @NonNull
@@ -44,6 +54,16 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.ViewHolder>  {
         holder.artist.setText(datum.getArtist());
        // holder.duration.setText(datum.getDuration());
         holder.duration.setText(Integer.toString(datum.getDuration()));
+
+        //imageview interface pass
+        holder.thumbnail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onImageClickListener.onImageClick(datum.getUrl());
+                onImageClickListener.onImageClick(datum.getThumbnail());
+
+            }
+        });
 
     }
 
@@ -70,3 +90,4 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.ViewHolder>  {
         }
     }
 }
+
