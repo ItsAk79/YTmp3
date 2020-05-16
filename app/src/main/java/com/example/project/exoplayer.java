@@ -28,32 +28,39 @@ public class exoplayer extends AppCompatActivity {
     String url1="";
 
     ImageView thumb;
-    TextView link;
+    TextView head;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exoplayer);
 
         thumb = findViewById(R.id.thumb);
-        link = findViewById(R.id.link);
+        head = findViewById(R.id.head);
 
         String image = getIntent().getStringExtra("image");
         String url = getIntent().getStringExtra("url");
-        if (url.contains(".jpeg")){
-            link.setText(null);
+        String title = getIntent().getStringExtra("title");
 
-            //Glide.with(this).asBitmap().load(image).into(thumb);
-        }
-        else {
-            link.setText(url);
-            Glide.with(this).asBitmap().load(image).into(thumb);
-        }
-        //link.setText(url);
-        //Glide.with(this).asBitmap().load(image).into(thumb);
-        initializeplayer();
+
+        head.setText(title);
+       // link.setText(url);
+        Glide.with(this).asBitmap().load(image).into(thumb);
+
+        playerView = findViewById(R.id.exo);
+        simpleExoPlayer = ExoPlayerFactory.newSimpleInstance(this);
+        playerView.setPlayer(simpleExoPlayer);
+
+        DataSource.Factory datasourcefactory = new DefaultDataSourceFactory(this,
+                Util.getUserAgent(this, "appname"));
+
+        MediaSource mediaSource = new ExtractorMediaSource.Factory(datasourcefactory)
+                .createMediaSource(Uri.parse(url));
+        simpleExoPlayer.prepare(mediaSource);
+        simpleExoPlayer.setPlayWhenReady(true);
+        //initializeplayer();
     }
 
-    public void initializeplayer(){
+   /* public void initializeplayer(){
 
         playerView = findViewById(R.id.exo);
         simpleExoPlayer = ExoPlayerFactory.newSimpleInstance(this);
@@ -66,6 +73,11 @@ public class exoplayer extends AppCompatActivity {
                 .createMediaSource(Uri.parse(url1));
         simpleExoPlayer.prepare(mediaSource);
         simpleExoPlayer.setPlayWhenReady(true);
-    }
+    }*/
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        simpleExoPlayer.release();
+    }
 }

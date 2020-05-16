@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -55,12 +56,31 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.ViewHolder>  {
        // holder.duration.setText(datum.getDuration());
         holder.duration.setText(Integer.toString(datum.getDuration()));
 
+        //layout click
+        /*holder.layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onImageClickListener.onImageClick(datum.getUrl());
+            }
+        });*/
+
+        //ontitle click
+        holder.title.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //onImageClickListener.onImageClick(datum.getUrl());
+
+
+            }
+        });
+
         //imageview interface pass
         holder.thumbnail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onImageClickListener.onImageClick(datum.getUrl());
-                onImageClickListener.onImageClick(datum.getThumbnail());
+                onImageClickListener.onImageClick(datum.getThumbnail(), datum.getUrl(), datum.getTitle());
+
+
 
             }
         });
@@ -78,6 +98,7 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.ViewHolder>  {
         TextView title;
         TextView artist;
         TextView duration;
+        LinearLayout layout;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -86,6 +107,7 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.ViewHolder>  {
             title = (TextView) itemView.findViewById(R.id.title);
             artist = (TextView) itemView.findViewById(R.id.artist);
             duration = (TextView) itemView.findViewById(R.id.duration);
+            layout = itemView.findViewById(R.id.layout);
         }
     }
 }
