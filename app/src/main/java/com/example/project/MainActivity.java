@@ -72,9 +72,6 @@ public class MainActivity extends AppCompatActivity implements OnImageClickListe
         mDatumList = new ArrayList<>();
         mQueryEt = findViewById(R.id.query_et);
 
-        //exoplayer init method called
-        //initializeplayer();
-
 
         mQueryEt.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -141,39 +138,6 @@ public class MainActivity extends AppCompatActivity implements OnImageClickListe
         });
     }
 
-    //exoplayer methods from here
-    /*public void initializeplayer(){
-
-
-        playerView = findViewById(R.id.exo);
-        simpleExoPlayer = ExoPlayerFactory.newSimpleInstance(this);
-        playerView.setPlayer(simpleExoPlayer);
-        DataSource.Factory datasourcefactory = new DefaultDataSourceFactory(this,
-                Util.getUserAgent(this, "appname"));
-
-        MediaSource mediaSource = new ExtractorMediaSource.Factory(datasourcefactory)
-                .createMediaSource(Uri.parse(url));
-        simpleExoPlayer.prepare(mediaSource);
-        simpleExoPlayer.setPlayWhenReady(true);
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        simpleExoPlayer.release();
-    }
-
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        initializeplayer();
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        simpleExoPlayer.release();
-    }*/
 
 
     //imageclick listener
