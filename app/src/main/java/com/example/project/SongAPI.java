@@ -11,7 +11,7 @@ import retrofit2.http.Query;
 
 public class SongAPI {
 
-    private static final String url = "http://192.168.1.5:57621/";
+    private static final String url = "https://ytmp3web.herokuapp.com/";
 
     public static GetResult getResult = null;
 
